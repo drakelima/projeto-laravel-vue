@@ -3445,13 +3445,14 @@ __webpack_require__.r(__webpack_exports__);
     lista: function lista() {
       var _this = this;
 
+      var lista = this.itens.data;
       var ordem = this.ordemAux;
       var ordemCol = this.ordemAuxCol;
       ordem = ordem.toLowerCase();
       ordemCol = parseInt(ordemCol);
 
       if (ordem == "asc") {
-        this.itens.sort(function (a, b) {
+        lista.sort(function (a, b) {
           if (Object.values(a)[ordemCol] > Object.values(b)[ordemCol]) {
             return 1;
           }
@@ -3463,7 +3464,7 @@ __webpack_require__.r(__webpack_exports__);
           return 0;
         });
       } else {
-        this.itens.sort(function (a, b) {
+        lista.sort(function (a, b) {
           if (Object.values(a)[ordemCol] < Object.values(b)[ordemCol]) {
             return 1;
           }
@@ -3477,7 +3478,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (this.buscar) {
-        return this.itens.filter(function (res) {
+        return lista.filter(function (res) {
           res = Object.values(res);
 
           for (var k = 0; k < res.length; k++) {
@@ -3490,7 +3491,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
 
-      return this.itens;
+      return lista;
     }
   }
 });
@@ -3605,10 +3606,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['tipo', 'nome', 'titulo', 'css', 'item'],
+  props: ['tipo', 'nome', 'titulo', 'css', 'item', 'url'],
   methods: {
     preencheFormulario: function preencheFormulario() {
-      this.$store.commit('setItem', this.item);
+      var _this = this;
+
+      axios.get(this.url + this.item.id).then(function (res) {
+        _this.$store.commit('setItem', res.data);
+      });
     }
   }
 });
@@ -40109,7 +40114,11 @@ var render = function() {
     "form",
     {
       class: _vm.css,
-      attrs: { action: _vm.action, method: _vm.POST, enctype: _vm.enctype }
+      attrs: {
+        action: _vm.action,
+        method: _vm.defineMethod,
+        enctype: _vm.enctype
+      }
     },
     [
       _vm.alterMethod
@@ -40343,7 +40352,7 @@ var render = function() {
                           {
                             attrs: {
                               id: index,
-                              action: _vm.deletar,
+                              action: _vm.deletar + item.id,
                               method: "post"
                             }
                           },
@@ -40372,6 +40381,7 @@ var render = function() {
                                   attrs: {
                                     item: item,
                                     tipo: "link",
+                                    url: _vm.detalhe,
                                     nome: "detalhe",
                                     titulo: " Detalhe |",
                                     css: ""
@@ -40390,6 +40400,7 @@ var render = function() {
                                   attrs: {
                                     item: item,
                                     tipo: "link",
+                                    url: _vm.editar,
                                     nome: "editar",
                                     titulo: " Editar |",
                                     css: ""
@@ -40430,6 +40441,7 @@ var render = function() {
                                     item: item,
                                     tipo: "link",
                                     nome: "detalhe",
+                                    url: _vm.detalhe,
                                     titulo: " Detalhe |",
                                     css: ""
                                   }
@@ -40445,8 +40457,10 @@ var render = function() {
                             _vm.criar && _vm.modal
                               ? _c("modallink", {
                                   attrs: {
+                                    item: item,
                                     tipo: "link",
                                     nome: "editar",
+                                    url: _vm.editar,
                                     titulo: " Editar |",
                                     css: ""
                                   }
@@ -40478,6 +40492,7 @@ var render = function() {
                                   attrs: {
                                     item: item,
                                     tipo: "link",
+                                    url: _vm.detalhe,
                                     nome: "detalhe",
                                     titulo: " Detalhe |",
                                     css: ""
@@ -40494,8 +40509,10 @@ var render = function() {
                             _vm.criar && _vm.modal
                               ? _c("modallink", {
                                   attrs: {
+                                    item: item,
                                     tipo: "link",
                                     nome: "editar",
+                                    url: _vm.editar,
                                     titulo: " Editar",
                                     css: ""
                                   }
