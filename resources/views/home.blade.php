@@ -6,13 +6,13 @@
         <migalhas v-bind:lista="{{ $listaMigalhas }}" ></migalhas>
         <div class="row">
             <div class="col-md-4">
-                <caixa quantidade="80" url="{{route('artigos.index')}}" titulo="Artigos" cor="bg-aqua" icone="ion-bag"></caixa>
+                <caixa quantidade="{{$quantidadeArtigos}}" url="{{route('artigos.index')}}" titulo="Artigos" cor="bg-aqua" icone="ion-bag"></caixa>
             </div>
             <div class="col-md-4">
-                <caixa quantidade="1500" titulo="Usuários" cor="bg-red" icone="ion-person-stalker"></caixa>
+                <caixa quantidade="{{$quantidadeUsuarios}}" url="{{route('usuarios.index')}}" titulo="Usuários" cor="bg-red" icone="ion-person-stalker"></caixa>
             </div>
             <div class="col-md-4">
-                <caixa quantidade="3" titulo="Autores" cor="bg-orange" icone="ion-person"></caixa>
+                <caixa quantidade="{{$quantidadeAutores}}" url="{{route('autores.index')}}" titulo="Autores" cor="bg-orange" icone="ion-person"></caixa>
             </div>
         </div>
     </painel>

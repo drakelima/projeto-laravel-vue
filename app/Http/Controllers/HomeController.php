@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Artigo;
+use App\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class HomeController extends Controller
 {
@@ -27,6 +31,10 @@ class HomeController extends Controller
             ["titulo"=>"Home", "url"=>""]
         ]);
 
-        return view('home', compact('listaMigalhas'));
+        $quantidadeArtigos = Artigo::count();
+        $quantidadeUsuarios = User::count();
+        $quantidadeAutores = User::where('autor','=','S')->count();
+
+        return view('home', compact('listaMigalhas','quantidadeArtigos','quantidadeUsuarios','quantidadeAutores'));
     }
 }
