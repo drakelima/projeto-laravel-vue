@@ -13,7 +13,7 @@
     @endif
     <painel titulo="Lista de Artigos">
       <migalhas v-bind:lista="{{ $listaMigalhas }}"></migalhas>
-      <tabela-lista v-bind:titulos="['id','titulo','curso','data']"
+      <tabela-lista v-bind:titulos="['id','titulo','descrição','Autor','data']"
         v-bind:itens="{{json_encode($listaArtigos)}}"
         criar="#criar" detalhe="artigos/" editar="/admin/artigos/" deletar="/admin/artigos/" token="{{ csrf_token() }}"
         ordem="desc" ordemCol="1" modal="sim"
@@ -36,8 +36,19 @@
         <input type="text" class="form-control" id="descricao" name="descricao" placeholder="descricao" value="{{old('descricao')}}">
       </div>
       <div class="form-group">
-        <label for="conteudo">Conteudo</label>
-        <textarea name="conteudo" id="conteudo" class="form-control">{{old('conteudo')}}</textarea>
+        <label for="addConteudo">Conteudo</label>
+
+        <vue-ckeditor
+        id="addConteudo"
+        name="conteudo"
+        value="{{old('conteudo')}}" 
+        :config="{
+          toolbar: [
+            'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'
+          ],
+          height: 300
+        }">
+        </vue-ckeditor>
       </div>
       <div class="form-group">
         <label for="data">Data</label>
@@ -60,8 +71,8 @@
         <input type="text" class="form-control" id="descricao" name="descricao" placeholder="descricao" v-model="$store.state.item.descricao">
       </div>
       <div class="form-group">
-        <label for="conteudo">Conteudo</label>
-        <textarea name="conteudo" id="conteudo" class="form-control" v-model="$store.state.item.conteudo"></textarea>
+        <label for="editconteudo">Conteudo</label>
+        <textarea name="conteudo" id="editconteudo" class="form-control" v-model="$store.state.item.conteudo"></textarea>
       </div>
       <div class="form-group">
         <label for="data">Data</label>

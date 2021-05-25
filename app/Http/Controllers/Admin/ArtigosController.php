@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Artigo;
+use App\User;
+
 
 class ArtigosController extends Controller
 {
@@ -17,11 +19,24 @@ class ArtigosController extends Controller
     public function index()
     {
         $listaMigalhas = json_encode([
-            ["titulo"=>"Home", "url"=>route('home')],
+            ["titulo"=>"Admin", "url"=>route('admin')],
             ["titulo"=>"Lista de Artigos", "url"=>""]
         ]);
+        /* Forma pior de fazer (deve se fazer no model)
 
-        $listaArtigos = Artigo::select('id','titulo','descricao','data')->paginate(2);
+        $listaArtigos = Artigo::select('id','titulo','descricao','user_id','data')->paginate(2);
+
+            foreach ($listaArtigos as $key => $value) {
+                //fazendo por find
+                //$value->user_id = User::find($value->user_id)->name;
+
+                //fazendo direto pela relação no sistema
+                //$value->user_id = $value->user_name;
+                //unset($value->user);
+            }
+        */
+
+        $listaArtigos = Artigo::listaArtigos(3);
 
         return view('admin.artigos.index', compact('listaMigalhas','listaArtigos'));
     }

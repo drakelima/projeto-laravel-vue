@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Artigo;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +16,15 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $lista = Artigo::listaArtigosSite(3);
+    //$lista = new Artigo();
+    //$lista = $lista->listaArtigosSite(3);
+    return view('site',compact('lista'));
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'AdminCOntroller@index')->name('admin');
 
 Route::middleware(['auth'])->prefix('admin')->namespace('Admin')->group(function(){
     

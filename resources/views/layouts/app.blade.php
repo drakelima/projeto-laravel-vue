@@ -9,8 +9,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    
+    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -37,17 +37,22 @@
                         {{ Auth::user()->name }}
                     </a>
 
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{{route('admin')}}">Admin</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+    
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
                 </li>
             @endguest
         </topo>
@@ -57,5 +62,9 @@
             @yield('content')
         </main>
     </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/vue-ckeditor2"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>

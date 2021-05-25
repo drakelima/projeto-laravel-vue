@@ -8,7 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -28,13 +28,13 @@ class HomeController extends Controller
     public function index()
     {
         $listaMigalhas = json_encode([
-            ["titulo"=>"Home", "url"=>""]
+            ["titulo"=>"Admin", "url"=>""]
         ]);
 
         $quantidadeArtigos = Artigo::count();
         $quantidadeUsuarios = User::count();
         $quantidadeAutores = User::where('autor','=','S')->count();
 
-        return view('home', compact('listaMigalhas','quantidadeArtigos','quantidadeUsuarios','quantidadeAutores'));
+        return view('admin', compact('listaMigalhas','quantidadeArtigos','quantidadeUsuarios','quantidadeAutores'));
     }
 }

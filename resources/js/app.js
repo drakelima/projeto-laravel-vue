@@ -44,6 +44,8 @@ Vue.component('migalhas', require('./components/Migalhas.vue').default);
 Vue.component('modal', require('./components/modal/Modal.vue').default);
 Vue.component('modallink', require('./components/modal/ModalLink.vue').default);
 Vue.component('formulario', require('./components/Formulario.vue').default);
+Vue.component('artigocard', require('./components/ArtigoCard.vue').default);
+Vue.component('vue-ckeditor', require('vue-ckeditor2').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
