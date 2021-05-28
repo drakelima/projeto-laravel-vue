@@ -2,7 +2,7 @@
 Projeto de um modelo de Blog servindo Scaffolding para novos sistemas
 
 ## Pré-requisitos
-É necessário ter instalado corretamente os gerenciadores de pacotes composer (php) e npm (javascript) corretamente instalados
+É necessário ter instalado corretamente os gerenciadores de pacotes composer (php) e npm (javascript)
 
 ## Tecnologias utilizadas
 ### Front-end
